@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>访问必知</title>
-      <link href="/2023/11/25/fang-wen-bi-zhi/"/>
-      <url>/2023/11/25/fang-wen-bi-zhi/</url>
-      
-        <content type="html"><![CDATA[<p>你好，我是网站的创建者 Lucas Lee，欢迎你来到我的私人博客。在这里，你可以查看一些我和我的伙伴们共享的一些学习资源和实践经验。</p><p>如果有任何问题，欢迎你致信我的私人邮箱：<a href="mailto:18879664203@163.com">18879664203@163.com</a>。</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
+<search>
+  <entry>
+    <title>tuijian</title>
+    <url>/2023/11/29/tuijian/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>关于datasnipper的介绍</title>
+    <url>/2023/11/29/guan-yu-data-snipper-de-yong-tu-jie-shao/</url>
+    <content><![CDATA[<p>Data snipper是excel里面一款强大的功能插件。我将会从一些使用频率的功能开始介绍起。</p>
+<p>首先是：</p>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>访问必知</title>
+    <url>/2023/11/25/fang-wen-bi-zhi/</url>
+    <content><![CDATA[<p>你好，我是网站的创建者 Lucas Lee，欢迎你来到我的私人博客。在这里，你可以查看一些我和我的伙伴们共享的一些学习资源和实践经验。</p>
+<p>如果有任何问题，欢迎你致信我的私人邮箱：<a href="mailto:18879664203@163.com">18879664203@163.com</a>。</p>
+]]></content>
+  </entry>
 </search>
