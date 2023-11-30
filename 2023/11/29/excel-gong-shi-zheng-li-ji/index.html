@@ -483,18 +483,83 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>#文具</p>
-<h2 id="XLOOKUP"><a href="#XLOOKUP" class="headerlink" title="XLOOKUP"></a>XLOOKUP</h2><p>推荐阅读：<a target="_blank" rel="noopener" href="https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929</a></p>
+                <h1 id="文具"><a href="#文具" class="headerlink" title="文具"></a>文具</h1><h2 id="XLOOKUP"><a href="#XLOOKUP" class="headerlink" title="XLOOKUP"></a>XLOOKUP</h2><p>推荐阅读：<a target="_blank" rel="noopener" href="https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929</a></p>
+<h3 id="基本运算公式"><a href="#基本运算公式" class="headerlink" title="基本运算公式"></a>基本运算公式</h3><p>=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode]) </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>lookup_value</code></td>
+<td><strong>必填</strong>*，要搜索的值。如果省略，XLOOKUP将返回在<code>lookup_array</code>中找到的空白单元格。</td>
+</tr>
+<tr>
+<td><code>lookup_array</code></td>
+<td><strong>必需</strong>，要搜索的数组或区域。</td>
+</tr>
+<tr>
+<td><code>return_array</code></td>
+<td><strong>必需</strong>，要返回的数组或区域。</td>
+</tr>
+<tr>
+<td><code>[if_not_found]</code></td>
+<td><strong>可选</strong>，如果未找到有效的匹配项，则返回你提供的<code>[if_not_found]</code>文本。如果未找到有效的匹配项，且缺少<code>[if_not_found]</code>，则返回 #N/A。</td>
+</tr>
+<tr>
+<td><code>[match_mode]</code></td>
+<td><strong>可选</strong>，指定匹配类型：</td>
+</tr>
+<tr>
+<td></td>
+<td>- 0: 完全匹配。如果未找到，则返回 #N/A。这是默认选项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- -1: 完全匹配。如果没有找到，则返回下一个较小的项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- 1: 完全匹配。如果没有找到，则返回下一个较大的项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- 2: 通配符匹配，其中 <code>*</code>, <code>?</code> 和 <code>~</code> 有特殊含义。</td>
+</tr>
+<tr>
+<td><code>[search_mode]</code></td>
+<td><strong>可选</strong>，指定要使用的搜索模式：</td>
+</tr>
+<tr>
+<td></td>
+<td>- 1: 从第一项开始执行搜索。这是默认选项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- -1: 从最后一项开始执行反向搜索。</td>
+</tr>
+<tr>
+<td></td>
+<td>- 2: 执行依赖于<code>lookup_array</code>按升序排序的二进制搜索。如果未排序，将返回无效结果。</td>
+</tr>
+<tr>
+<td></td>
+<td>- -2: 执行依赖于<code>lookup_array</code>按降序排序的二进制搜索。如果未排序，将返回无效结果。</td>
+</tr>
+</tbody></table>
+<p>补充说明：二分/二进制查询需在有序数据中进行查询（升序、降序排列的数据中使用，它的查找效率优于非二进制查询）</p>
 <h3 id="为什么推荐XLOOKUP？"><a href="#为什么推荐XLOOKUP？" class="headerlink" title="为什么推荐XLOOKUP？"></a>为什么推荐XLOOKUP？</h3><p>它在与VLOOKUP的对比中有如下三个优点：</p>
-<p>1.XLOOKUP可以解决VLOOKUP无法向左查找的难题（VLOOKUP通常搭配HLOOKUP解决这一问题）</p>
-<p>2.XLOOKUP可以解决返回“N/A”的问题（使用VLOOKUP时，可搭配IFERROR使报错金额为0）</p>
-<p>3.XLOOKUP支持多条件查询（VLOOKUP需要多条件匹配时，可以用“&amp;”将多个条件合并到辅助列再VLOOKUP）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1.XLOOKUP可以解决VLOOKUP无法向左查找的难题（VLOOKUP通常搭配HLOOKUP解决这一问题）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2.XLOOKUP可以解决返回“N/A”的问题（使用VLOOKUP时，可搭配IFERROR使报错金额为0）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3.XLOOKUP支持多条件查询（VLOOKUP需要多条件匹配时，可以用“&amp;”将多个条件合并到辅助列再VLOOKUP）</p>
 <p>用途：暂时没总结</p>
 <hr>
 <h2 id="SUBTOTAL"><a href="#SUBTOTAL" class="headerlink" title="SUBTOTAL"></a>SUBTOTAL</h2><p>推荐阅读 <a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/office/subtotal-function-7b027003-f060-4ade-9040-e478765b9939">https://support.microsoft.com/en-us/office/subtotal-function-7b027003-f060-4ade-9040-e478765b9939</a></p>
 <p>Funtion_num:1-11数字功能包含隐藏值执行；101到111忽略隐藏值执行</p>
 <p>该函数可以替代多项函数的功能</p>
-<table>
+<h3 id="subtotals数字功能查询表"><a href="#subtotals数字功能查询表" class="headerlink" title="subtotals数字功能查询表"></a>subtotals数字功能查询表</h3><table>
 <thead>
 <tr>
 <th>Function_num (includes hidden rows)</th>
@@ -558,7 +623,97 @@
 <td>VARP</td>
 </tr>
 </tbody></table>
-
+<hr>
+<h2 id="SUMIF-SUMIFS"><a href="#SUMIF-SUMIFS" class="headerlink" title="SUMIF&amp;SUMIFS"></a>SUMIF&amp;SUMIFS</h2><h3 id="sum语法的差异"><a href="#sum语法的差异" class="headerlink" title="sum语法的差异"></a>sum语法的差异</h3><p>sumif适用于单条件查询，sumifs使用于多条件查询</p>
+<p>SUMIF(range, criteria, [sum_range])</p>
+<p>sumif应该没什么好讲的了（笑) 就来说说sumifs</p>
+<p>sumifs的语法：SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], …)</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Sum_range</code></td>
+<td><strong>必需</strong>，要求和的单元格区域。</td>
+</tr>
+<tr>
+<td><code>Criteria_range1</code></td>
+<td><strong>必需</strong>，使用<code>Criteria1</code>测试的区域。<code>Criteria_range1</code>和<code>Criteria1</code>设置用于搜索某个区域是否符合特定条件的搜索对。一旦在该区域中找到了项，将计算<code>Sum_range</code>中的相应值的和。</td>
+</tr>
+<tr>
+<td><code>Criteria1</code></td>
+<td><strong>必需</strong>，定义将计算<code>Criteria_range1</code>中的哪些单元格的和的条件。例如，可以将条件输入为32、”&gt;32”、B4、”苹果”或”32”。</td>
+</tr>
+<tr>
+<td><code>Criteria_range2</code>, <code>criteria2</code>, …</td>
+<td><strong>可选</strong>，附加的区域及其关联条件。最多可以输入127个区域/条件对。</td>
+</tr>
+</tbody></table>
+<h3 id="sumifs常见问题查询表"><a href="#sumifs常见问题查询表" class="headerlink" title="sumifs常见问题查询表"></a>sumifs常见问题查询表</h3><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>显示 0（零）而不是预期结果。</td>
+<td>如果要测试文本值，如姓名，请确保将 <code>Criteria1</code>, <code>Criteria2</code> 用引号引起来。</td>
+</tr>
+<tr>
+<td>Sum_range 有值 TRUE 或 FALSE 时，结果不正确。</td>
+<td><code>Sum_range</code> 的值 TRUE 和 FALSE 的求值方式不同，可能会在将其相加时导致意外结果。</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Sum_range</code> 中包含 TRUE 的单元格的求值结果为 1。包含 FALSE 的单元格的求值结果为 0（零）。</td>
+</tr>
+</tbody></table>
+<h3 id="通配符的补充说明"><a href="#通配符的补充说明" class="headerlink" title="通配符的补充说明"></a>通配符的补充说明</h3><table>
+<thead>
+<tr>
+<th>用途</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>若要查找</td>
+<td></td>
+</tr>
+<tr>
+<td>? （问号）</td>
+<td>任何单个字符，例如，<code>sm?th</code> 可找到”smith”和”smyth”</td>
+</tr>
+<tr>
+<td>*（星号）</td>
+<td>任意数目的字符，例如，<code>*east</code> 可找到”northwest”和”southwest”</td>
+</tr>
+<tr>
+<td>~（波形符）后跟 ?、* 或 ~</td>
+<td>问号、星号或波浪线，例如，<code>fy06~?</code> 可找到”fy06？”</td>
+</tr>
+</tbody></table>
+<h2 id="COUNTIF-COUNTIFS"><a href="#COUNTIF-COUNTIFS" class="headerlink" title="COUNTIF&amp;COUNTIFS"></a>COUNTIF&amp;COUNTIFS</h2><p>COUNTIF 是一个统计函数，用于统计满足某个条件的单元格的数量</p>
+<p><strong>通配符可解决查询复杂形式的数据</strong></p>
+<h3 id="COUNT一些特殊情况"><a href="#COUNT一些特殊情况" class="headerlink" title="COUNT一些特殊情况"></a>COUNT一些特殊情况</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;1.查找非文本出现次数</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;=countif（筛选区域,”&lt;&gt;文本”)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1.1 name range的使用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name ranger可以简化筛选区域的公式</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2.查找L为首字母</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;=countif(name range,”L*”)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2.1 取消通配符作用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;如<del>可取消通配符作用，如countif(name range,”L*</del>“)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3.查找x位数字</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;=countif(name range,”?????”)，此处为查询五位数，x为几，？就有几个</p>
+<h2 id="FILTER函数"><a href="#FILTER函数" class="headerlink" title="FILTER函数"></a>FILTER函数</h2><p>返回数据组的函数，相较于vlookup来说</p>
+<p>当然它可以修改筛选区域，从而实现和VLOOKUP一样的作用</p>
+<p>当然它也可以和if函数结合，从而实现不相邻列的数据返回</p>
+<p>当然，如果只是为了filter实现以上两个功能，我的评价是：<strong>为什么不用xlookup</strong></p>
+<p>它一定还有更好用的作用，目前我不知道！</p>
+<h2 id="暂时更新到这！"><a href="#暂时更新到这！" class="headerlink" title="暂时更新到这！"></a>暂时更新到这！</h2>
                 
             </div>
             <hr/>
