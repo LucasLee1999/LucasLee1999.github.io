@@ -1,128 +1,430 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>不规则文本提取信息</title>
-      <link href="/2023/12/14/irregular/"/>
-      <url>/2023/12/14/irregular/</url>
-      
-        <content type="html"><![CDATA[<p>##Excel函数</p><p>在Excel中提取不规则文本中的某段文本通常需要使用一些文本函数，如<code>FIND</code>、<code>SEARCH</code>、<code>LEFT</code>、<code>RIGHT</code>、<code>MID</code>等。如果文本的格式比较复杂，可能还需要结合这些函数来实现。下面是一个简单的例子，演示如何从一个包含不规则文本的单元格中提取特定的段落：</p><p>如若不了解Find、Search、Mid等函数，请阅读：</p><p><a href="https://support.microsoft.com/zh-tw/office/mid-midb-%E5%87%BD%E6%95%B8-d5f9e25c-d7d6-472e-b568-4ecb12433028">Microsoft Office Support - MID and MIDB Functions</a></p><p><a href="https://support.microsoft.com/zh-tw/office/find-findb-%E5%87%BD%E6%95%B8-c7912941-af2a-4bdf-a553-d0d89b0a0628">Microsoft Office Support - FIND and FINDB Functions</a></p><p>假设你有一个文本字符串：</p><figure class="highlight 1c"><table><tbody><tr><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">"姓名：张三，年龄：25岁，职业：工程师"</span><br></code></pre></td></tr></tbody></table></figure><p>你想要提取年龄信息，即”25岁”。你可以使用以下函数：</p><figure class="highlight excel"><table><tbody><tr><td class="code"><pre><code class="hljs excel">= <span class="hljs-built_in">MID</span>(<span class="hljs-symbol">A1</span>, <span class="hljs-built_in">SEARCH</span>(<span class="hljs-string">"年龄："</span>, <span class="hljs-symbol">A1</span>) + <span class="hljs-number">3</span>, <span class="hljs-built_in">SEARCH</span>(<span class="hljs-string">"岁"</span>, <span class="hljs-symbol">A1</span>) - <span class="hljs-built_in">SEARCH</span>(<span class="hljs-string">"年龄："</span>, <span class="hljs-symbol">A1</span>) - <span class="hljs-number">3</span>)<br></code></pre></td></tr></tbody></table></figure><p>这个公式的具体步骤如下：</p><ol><li><code>SEARCH("年龄：", A1)</code>：找到文本中 “年龄：” 的位置。</li><li><code>SEARCH("岁", A1)</code>：找到文本中 “岁” 的位置。</li><li><code>SEARCH("岁", A1) - SEARCH("年龄：", A1) - 3</code>：计算 “岁” 出现位置与 “年龄：” 出现位置之间的字符数。</li><li><code>MID(A1, SEARCH("年龄：", A1) + 3, SEARCH("岁", A1) - SEARCH("年龄：", A1) - 3)</code>：使用 <code>MID</code> 函数提取指定位置的子字符串。</li></ol><p>请根据你实际的文本格式进行调整。如果文本的结构更为复杂，你可能需要组合多个函数来提取所需的信息。</p>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>不规则文本提取信息</title>
+    <url>/2023/12/14/irregular/</url>
+    <content><![CDATA[<h2 id="Excel函数"><a href="#Excel函数" class="headerlink" title="Excel函数"></a>Excel函数</h2><p>在Excel中提取不规则文本中的某段文本通常需要使用一些文本函数，如<code>FIND</code>、<code>SEARCH</code>、<code>LEFT</code>、<code>RIGHT</code>、<code>MID</code>等。如果文本的格式比较复杂，可能还需要结合这些函数来实现。下面是一个简单的例子，演示如何从一个包含不规则文本的单元格中提取特定的段落：</p>
+<p>如若不了解Find、Search、Mid等函数，请阅读：</p>
+<p><a href="https://support.microsoft.com/zh-tw/office/mid-midb-%E5%87%BD%E6%95%B8-d5f9e25c-d7d6-472e-b568-4ecb12433028">Microsoft Office Support - MID and MIDB Functions</a></p>
+<p><a href="https://support.microsoft.com/zh-tw/office/find-findb-%E5%87%BD%E6%95%B8-c7912941-af2a-4bdf-a553-d0d89b0a0628">Microsoft Office Support - FIND and FINDB Functions</a></p>
+<p>假设你有一个文本字符串：</p>
+<figure class="highlight 1c"><table><tbody><tr><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">"姓名：张三，年龄：25岁，职业：工程师"</span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>你想要提取年龄信息，即”25岁”。你可以使用以下函数：</p>
+<figure class="highlight excel"><table><tbody><tr><td class="code"><pre><code class="hljs excel">= <span class="hljs-built_in">MID</span>(<span class="hljs-symbol">A1</span>, <span class="hljs-built_in">SEARCH</span>(<span class="hljs-string">"年龄："</span>, <span class="hljs-symbol">A1</span>) + <span class="hljs-number">3</span>, <span class="hljs-built_in">SEARCH</span>(<span class="hljs-string">"岁"</span>, <span class="hljs-symbol">A1</span>) - <span class="hljs-built_in">SEARCH</span>(<span class="hljs-string">"年龄："</span>, <span class="hljs-symbol">A1</span>) - <span class="hljs-number">3</span>)<br></code></pre></td></tr></tbody></table></figure>
+
+<p>这个公式的具体步骤如下：</p>
+<ol>
+<li><code>SEARCH("年龄：", A1)</code>：找到文本中 “年龄：” 的位置。</li>
+<li><code>SEARCH("岁", A1)</code>：找到文本中 “岁” 的位置。</li>
+<li><code>SEARCH("岁", A1) - SEARCH("年龄：", A1) - 3</code>：计算 “岁” 出现位置与 “年龄：” 出现位置之间的字符数。</li>
+<li><code>MID(A1, SEARCH("年龄：", A1) + 3, SEARCH("岁", A1) - SEARCH("年龄：", A1) - 3)</code>：使用 <code>MID</code> 函数提取指定位置的子字符串。</li>
+</ol>
+<p>请根据你实际的文本格式进行调整。如果文本的结构更为复杂，你可能需要组合多个函数来提取所需的信息。</p>
+<h2 id="Power-Query"><a href="#Power-Query" class="headerlink" title="Power Query"></a>Power Query</h2><p>当使用 Power Query 处理不规则文本时，你可以按照以下步骤进行操作。在这个示例中，我们使用 Power Query 处理包含有关个人信息的不规则文本，其中包含姓名、年龄和职业。</p>
+<ol>
+<li><p><strong>导入数据：</strong> 打开 Excel 文件，选择包含不规则文本的列，然后点击“数据”选项卡，选择“从表格/范围”导入数据。</p>
+</li>
+<li><p><strong>打开 Power Query 编辑器：</strong> 在 Excel 中，选择导入的表格，然后点击“开始”选项卡中的“查询编辑器”按钮。</p>
+</li>
+<li><p><strong>添加自定义列：</strong> 在 Power Query 编辑器中，选择“添加列” -&gt; “自定义列”。</p>
+</li>
+<li><p><strong>使用公式提取信息：</strong> 在自定义列对话框中，你可以使用 M 编程语言编写公式。在这个例子中，我们使用 <code>Text.BetweenDelimiters</code> 函数来提取 “年龄：” 和 “岁” 之间的文本。</p>
+ <figure class="highlight m"><table><tbody><tr><td class="code"><pre><code class="hljs m"><span class="hljs-built_in">=</span> Text.BetweenDelimiters([ColumnName], <span class="hljs-string">"年龄："</span>, <span class="hljs-string">"岁"</span>)<br></code></pre></td></tr></tbody></table></figure>
+
+<p> 这个公式的含义是在当前列 <code>[ColumnName]</code> 中找到 “年龄：” 和 “岁” 之间的文本。</p>
+</li>
+<li><p><strong>加载数据：</strong> 完成公式的添加后，点击“完成”按钮，然后点击“关闭并应用”以将更改应用到 Excel 表格。</p>
+</li>
+</ol>
+<p>这是一个简单的例子，实际上，你可能需要根据实际情况使用其他 Power Query 函数和步骤，以确保你的文本处理适应你的数据结构和需求。</p>
+<p>请注意，Power Query 编辑器提供了许多图形化的工具，使得在不使用 M 编程语言的情况下也能完成很多任务。因此，根据实际需求和数据结构，你可能需要查看 Power Query 编辑器的不同功能和选项。</p>
+]]></content>
       <categories>
-          
-          <category> Excel </category>
-          
+        <category>Excel</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Excel </tag>
-            
-            <tag> tool </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>香港旅行整理</title>
-      <link href="/2023/12/02/xiang-gang-you-ji/"/>
-      <url>/2023/12/02/xiang-gang-you-ji/</url>
-      
-        <content type="html"><![CDATA[<h2 id="0-携带物品"><a href="#0-携带物品" class="headerlink" title="0.携带物品"></a>0.携带物品</h2><p>充电宝</p><p>英式充电切换插头（有充电宝就不需要）</p><p>水瓶或瓶装水（香港10hkd一瓶 自己带省钱）</p><p>雨伞（视天气而定，711一把雨伞100hkd）</p><p>补充说明：<br>健康申报（黑码）于11.1日废除，所以无需申报</p><h3 id="0-0-流量问题"><a href="#0-0-流量问题" class="headerlink" title="0.0 流量问题"></a>0.0 流量问题</h3><p>移动用户可下载无忧行app，首次优惠8.6元购买1.5g流量</p><p>支付宝用户可搜索“境外浏览”购买，约16元购买1.5g境外流量</p><p>入香港境内，可于便利店购买33元的50g月包电话卡</p><p>体感：一个人购买的流量热点可以供两个人使用</p><p>补充说明：</p><p>入境后MTR港铁提供免费wifi，可以链接MTR Free wi-fi。只允许免费连接一天五次，每次15分钟。如果不想预先购买流量包，可以在地铁站内连接免费wifi购买站内便利店的电话卡。</p><h3 id="0-1-羊毛福利"><a href="#0-1-羊毛福利" class="headerlink" title="0.1 羊毛福利"></a>0.1 羊毛福利</h3><h4 id="0-1-1-支付宝线下支付十次减免"><a href="#0-1-1-支付宝线下支付十次减免" class="headerlink" title="0.1.1 支付宝线下支付十次减免"></a>0.1.1 支付宝线下支付十次减免</h4><p>支付宝地区切换为hk，首页活动点击开通。有限时间：一周</p><h4 id="0-1-2-“香港夜游乐”无门槛限定商户100hkd券"><a href="#0-1-2-“香港夜游乐”无门槛限定商户100hkd券" class="headerlink" title="0.1.2 “香港夜游乐”无门槛限定商户100hkd券"></a>0.1.2 “香港夜游乐”无门槛限定商户100hkd券</h4><p>领取地点：机场/西九龙高铁站/尖沙咀天星码头/香港旅游局门店柜台</p><p>使用限制：指定商户；使用时间需晚上6点后；一人一张，两人就是200hkd，</p><p>tips：使用前提前询问店家，消费后如若不兑券，去旅游局举报~</p><h4 id="0-1-3-wechat-ali-pay汇率优惠"><a href="#0-1-3-wechat-ali-pay汇率优惠" class="headerlink" title="0.1.3 wechat/ali pay汇率优惠"></a>0.1.3 wechat/ali pay汇率优惠</h4><p>微信支付全球有礼，开通后7天有效</p><p>支付宝惠出境，可以领取汇率周卡，也可以按照会员等级领取汇率……</p><h2 id="1-出行"><a href="#1-出行" class="headerlink" title="1.出行"></a>1.出行</h2><h3 id="1-1-出行方式"><a href="#1-1-出行方式" class="headerlink" title="1.1 出行方式"></a>1.1 出行方式</h3><h4 id="1-1-1-口岸港铁"><a href="#1-1-1-口岸港铁" class="headerlink" title="1.1.1 口岸港铁"></a>1.1.1 口岸港铁</h4><p>以下以福田口岸为例：</p><p>福田口岸——香港境内-落马洲站——港铁</p><p>通关时间：6.30-22.30</p><p>排队：10-20分钟</p><p>福田口岸于晚上22.30关闭，要在这之前回到深圳</p><h4 id="1-1-2-飞机"><a href="#1-1-2-飞机" class="headerlink" title="1.1.2 飞机"></a>1.1.2 飞机</h4><p>暂不讨论</p><h4 id="1-1-3-船"><a href="#1-1-3-船" class="headerlink" title="1.1.3 船"></a>1.1.3 船</h4><h4 id="1-1-4-高铁"><a href="#1-1-4-高铁" class="headerlink" title="1.1.4 高铁"></a>1.1.4 高铁</h4><p>68rmb左右</p><h3 id="1-2交通支付方式"><a href="#1-2交通支付方式" class="headerlink" title="1.2交通支付方式"></a>1.2交通支付方式</h3><p>1.wechat pay &amp; alipay</p><p>目前港铁全线已全部支持微信、支付宝等扫码进出地铁站（但需要注意，部分闸机可能出现无法响应情况）</p><p>领取hk行程码流程和大陆流程一致</p><p>2.八达通（实体卡/虚拟卡）</p><p>办卡地点：香港境内地铁站/taobao购买</p><p>app：旅客八达通/八达通（旅客八达通换算率更高，没有补贴活动）</p><p>八达通在部分景点参观付费情况下，排队效率高。</p><p>租用版八达通实体办卡需要支付200hkd，150作为车费冲入卡内，50作为押金</p><p>*八达通更适用于长期频繁使用港铁或者生活支付的用户</p><p>——总交通出行消费满200hkd后的超出消费部分打7折 于下月返还交通补贴</p><p>——部分港铁段推出7折优惠活动，仅供八达通用户参与</p><p>（需要在进站前在相关机器前拍一拍，注意要拍两次，话说……拍拍是什么意思？）</p><p>——支持负支出，大陆游客在无法退卡取回押金的情况下，可以刷至-50</p><p>体感：返程可以使用七折出行，从尖沙咀返回至福田口岸（落马洲）30hkd，而从落马洲到达旺角东花了我45hkd</p><h2 id="2-美食购物"><a href="#2-美食购物" class="headerlink" title="2.美食购物"></a>2.美食购物</h2><h3 id="2-1-美食购物支付方式"><a href="#2-1-美食购物支付方式" class="headerlink" title="2.1 美食购物支付方式"></a>2.1 美食购物支付方式</h3><p>1.wechat pay &amp; alipay</p><p>大部分餐馆和商场支持</p><p>2.八达通 </p><p>和前文一样，大部分支持</p><p>3.现金hkd</p><p>少部分苍蝇馆子、小吃店要求只收现金</p><h3 id="2-2-美食参考指南"><a href="#2-2-美食参考指南" class="headerlink" title="2.2 美食参考指南"></a>2.2 美食参考指南</h3><p>Open Rice 香港本地美食指南网站（有官方app噢！）</p><h3 id="2-3-黑榜"><a href="#2-3-黑榜" class="headerlink" title="2.3  黑榜"></a>2.3  黑榜</h3><table><thead><tr><th>店名</th><th>上榜原因</th></tr></thead><tbody><tr><td>一乐烧鹅</td><td>殴打食客、歧视普通话游客、服务态度差</td></tr><tr><td>华嫂冰室</td><td>难吃</td></tr><tr><td>吃茶三千</td><td>不如内地奶茶</td></tr><tr><td>九记牛腩</td><td>态度差、排队久、味道一般</td></tr><tr><td>澳洲牛奶公司</td><td>出名的态度差</td></tr></tbody></table><h3 id="2-3-有趣知识"><a href="#2-3-有趣知识" class="headerlink" title="2.3 有趣知识"></a>2.3 有趣知识</h3><p>由于禽流感，2004年以来香港政府禁止活鸭鹅入口，因此香港烧鹅很多是冷冻产品，味道反而不如。</p><h2 id="3-旅游路线"><a href="#3-旅游路线" class="headerlink" title="3.旅游路线"></a>3.旅游路线</h2><p>香港行政区 地图如下<br><a href="https://imgse.com/i/pisbg00"><img src="https://z1.ax1x.com/2023/12/02/pisbg00.png" alt="pisbg00.png"></a></p><h3 id="3-1-初次来香港"><a href="#3-1-初次来香港" class="headerlink" title="3.1 初次来香港"></a>3.1 初次来香港</h3><p>我先是在旺角东下站，去了金鱼街看了一下。金鱼街和露天市场还是宠物店是挨在一起的，要走过天桥到达。天桥上到处都是外佣（菲律宾佣人、穆斯林信仰的佣人），她们三三两两坐在一起，一开始下来的时候，旁边是阿拉伯学校，我还以为她们都是阿拉伯人……</p><p>体感最好的是尖沙咀靠海那一段，中间是香港艺术馆、香港天文馆、有channel巨大雕塑缠绕的酒店，往右走是kkmall设计中的最高档的kk musem，在海滨上是3层楼那么高的迪奥圣诞树。向外走就是星光大道。往左走就是1881公馆和天星码头。</p><p>艺术馆的二楼向下看去，海水波光粼粼，可想而知如若是个阳天会是如何闪烁。</p><p>而星光大道确实是愉快的一段散步，在星巴克前面是梅艳芳和李小龙的雕像，在外围的围栏上面是名人的手印和签名。身后是kk musem，那些半死不活的绿植从窗外爬出。</p><p>1881公馆里有5对couple在拍结婚照，真的气氛很适合婚庆。</p><p>天星码头的中心可以领取100hkd的夜游券，天星码头对面就是香港岛，下了码头，旁边是海军博物馆，aia摩天轮和音乐节还是american express包场的一个活动。摩天轮需要排队80分钟，把我搞无语了都。旁边的旋转木马要30hkd。没有任何强烈的挣扎，我直接放弃了这项娱乐活动。</p><p>但是没控制好时间，到达香港岛的时候已经天色暗了下来，不太敢深入去看一些景点。<br>就走了天桥，这个天桥很有特点，就好像天桥上的城市一样，可以沿着天桥去往四面八方。尤其是搭乘自动扶梯的时候，看着那些建筑里的一格格窗经过我。在尽头就是大馆，以前是香港的监狱。但是现在一片祥和。</p><p>在地铁站靠近服务中心会有优惠机器，拿着八达通在上面拍一拍就可以领取优惠。可以用于返程。暴走3w步，就这样结束了。</p><h2 id="官方支持性app"><a href="#官方支持性app" class="headerlink" title="官方支持性app"></a>官方支持性app</h2><p>由香港政府官方支持的app集合，请参照以下链接，酌情下载：<a href="https://data.gov.hk/tc/application/hketa">https://data.gov.hk/tc/application/hketa</a></p><p>这个网站可以花点时间阅读一下，而不只限于app部分</p><p>我将部分可能出现的问题，和支持性app结合起来介绍</p><p>ps：安卓用户请灵活运用apk android等关键词搜索第三方渠道下载</p><h3 id="坐到哪了？还要等多久？"><a href="#坐到哪了？还要等多久？" class="headerlink" title="坐到哪了？还要等多久？"></a>坐到哪了？还要等多久？</h3><p>需要查询地铁、公交、轻轨到站时间，下载一个</p><p><a href="https://imgse.com/i/pisOdk6"><img src="https://z1.ax1x.com/2023/12/02/pisOdk6.jpg" alt="pisOdk6.jpg"></a></p><h3 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h3><p>不知道自己现在在哪，想要了解目的地该怎么过去？<br>请下载citymapper！有点像广告词了</p><p>还是请大家使用google map吧！这个citymapper也一般</p><h3 id="厕所问题"><a href="#厕所问题" class="headerlink" title="厕所问题"></a>厕所问题</h3><p>人有三急，而香港上厕所并没有那么方便</p><p>为了厕所自由，可以考虑下载以下app<br><a href="https://imgse.com/i/pisOtmR"><img src="https://z1.ax1x.com/2023/12/02/pisOtmR.jpg" alt="pisOtmR.jpg"></a></p><p>体感：去商场上就好了</p>]]></content>
-      
-      
+      <tags>
+        <tag>tool</tag>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>香港旅行整理</title>
+    <url>/2023/12/02/xiang-gang-you-ji/</url>
+    <content><![CDATA[<h2 id="0-携带物品"><a href="#0-携带物品" class="headerlink" title="0.携带物品"></a>0.携带物品</h2><p>充电宝</p>
+<p>英式充电切换插头（有充电宝就不需要）</p>
+<p>水瓶或瓶装水（香港10hkd一瓶 自己带省钱）</p>
+<p>雨伞（视天气而定，711一把雨伞100hkd）</p>
+<p>补充说明：<br>健康申报（黑码）于11.1日废除，所以无需申报</p>
+<h3 id="0-0-流量问题"><a href="#0-0-流量问题" class="headerlink" title="0.0 流量问题"></a>0.0 流量问题</h3><p>移动用户可下载无忧行app，首次优惠8.6元购买1.5g流量</p>
+<p>支付宝用户可搜索“境外浏览”购买，约16元购买1.5g境外流量</p>
+<p>入香港境内，可于便利店购买33元的50g月包电话卡</p>
+<p>体感：一个人购买的流量热点可以供两个人使用</p>
+<p>补充说明：</p>
+<p>入境后MTR港铁提供免费wifi，可以链接MTR Free wi-fi。只允许免费连接一天五次，每次15分钟。如果不想预先购买流量包，可以在地铁站内连接免费wifi购买站内便利店的电话卡。</p>
+<h3 id="0-1-羊毛福利"><a href="#0-1-羊毛福利" class="headerlink" title="0.1 羊毛福利"></a>0.1 羊毛福利</h3><h4 id="0-1-1-支付宝线下支付十次减免"><a href="#0-1-1-支付宝线下支付十次减免" class="headerlink" title="0.1.1 支付宝线下支付十次减免"></a>0.1.1 支付宝线下支付十次减免</h4><p>支付宝地区切换为hk，首页活动点击开通。有限时间：一周</p>
+<h4 id="0-1-2-“香港夜游乐”无门槛限定商户100hkd券"><a href="#0-1-2-“香港夜游乐”无门槛限定商户100hkd券" class="headerlink" title="0.1.2 “香港夜游乐”无门槛限定商户100hkd券"></a>0.1.2 “香港夜游乐”无门槛限定商户100hkd券</h4><p>领取地点：机场/西九龙高铁站/尖沙咀天星码头/香港旅游局门店柜台</p>
+<p>使用限制：指定商户；使用时间需晚上6点后；一人一张，两人就是200hkd，</p>
+<p>tips：使用前提前询问店家，消费后如若不兑券，去旅游局举报~</p>
+<h4 id="0-1-3-wechat-ali-pay汇率优惠"><a href="#0-1-3-wechat-ali-pay汇率优惠" class="headerlink" title="0.1.3 wechat/ali pay汇率优惠"></a>0.1.3 wechat/ali pay汇率优惠</h4><p>微信支付全球有礼，开通后7天有效</p>
+<p>支付宝惠出境，可以领取汇率周卡，也可以按照会员等级领取汇率……</p>
+<h2 id="1-出行"><a href="#1-出行" class="headerlink" title="1.出行"></a>1.出行</h2><h3 id="1-1-出行方式"><a href="#1-1-出行方式" class="headerlink" title="1.1 出行方式"></a>1.1 出行方式</h3><h4 id="1-1-1-口岸港铁"><a href="#1-1-1-口岸港铁" class="headerlink" title="1.1.1 口岸港铁"></a>1.1.1 口岸港铁</h4><p>以下以福田口岸为例：</p>
+<p>福田口岸——香港境内-落马洲站——港铁</p>
+<p>通关时间：6.30-22.30</p>
+<p>排队：10-20分钟</p>
+<p>福田口岸于晚上22.30关闭，要在这之前回到深圳</p>
+<h4 id="1-1-2-飞机"><a href="#1-1-2-飞机" class="headerlink" title="1.1.2 飞机"></a>1.1.2 飞机</h4><p>暂不讨论</p>
+<h4 id="1-1-3-船"><a href="#1-1-3-船" class="headerlink" title="1.1.3 船"></a>1.1.3 船</h4><p>暂不讨论</p>
+<h4 id="1-1-4-高铁"><a href="#1-1-4-高铁" class="headerlink" title="1.1.4 高铁"></a>1.1.4 高铁</h4><p>68rmb左右</p>
+<p>即使18分钟就可以到达西九龙，却要排30分钟以上的队伍（周末情况）</p>
+<h3 id="1-2交通支付方式"><a href="#1-2交通支付方式" class="headerlink" title="1.2交通支付方式"></a>1.2交通支付方式</h3><h4 id="1-2-1-wechat-pay-alipay"><a href="#1-2-1-wechat-pay-alipay" class="headerlink" title="1.2.1 wechat pay &amp; alipay"></a>1.2.1 wechat pay &amp; alipay</h4><p>目前港铁全线已全部支持微信、支付宝等扫码进出地铁站（但需要注意，部分闸机可能出现无法响应情况）</p>
+<p>领取hk行程码流程和大陆流程一致</p>
+<p>8.8元可购买20元券包，</p>
+<h4 id="1-2-2-八达通（实体卡-虚拟卡）"><a href="#1-2-2-八达通（实体卡-虚拟卡）" class="headerlink" title="1.2.2 八达通（实体卡/虚拟卡）"></a>1.2.2 八达通（实体卡/虚拟卡）</h4><p>办卡地点：香港境内地铁站/taobao购买</p>
+<p>app：旅客八达通/八达通（旅客八达通换算率更高，没有补贴活动）</p>
+<p>八达通在部分景点参观付费情况下，排队效率高。</p>
+<p>租用版八达通实体办卡需要支付200hkd，150作为车费冲入卡内，50作为押金</p>
+<p>*八达通更适用于长期频繁使用港铁或者生活支付的用户</p>
+<p>——总交通出行消费满200hkd后的超出消费部分打7折 于下月返还交通补贴</p>
+<p>——部分港铁段推出7折优惠活动，仅供八达通用户参与</p>
+<p>（需要在进站前在相关机器前拍一拍，注意要拍两次，话说……拍拍是什么意思？）</p>
+<p>——支持负支出，大陆游客在无法退卡取回押金的情况下，可以刷至-50</p>
+<p>体感：返程可以使用七折出行，从尖沙咀返回至福田口岸（落马洲）30hkd，而从落马洲到达旺角东花了我45hkd</p>
+<h2 id="2-美食购物"><a href="#2-美食购物" class="headerlink" title="2.美食购物"></a>2.美食购物</h2><h3 id="2-1-美食购物支付方式"><a href="#2-1-美食购物支付方式" class="headerlink" title="2.1 美食购物支付方式"></a>2.1 美食购物支付方式</h3><p>1.wechat pay &amp; alipay</p>
+<p>大部分餐馆和商场支持</p>
+<p>2.八达通 </p>
+<p>和前文一样，大部分支持</p>
+<p>3.现金hkd</p>
+<p>少部分苍蝇馆子、小吃店要求只收现金</p>
+<h3 id="2-2-美食参考指南"><a href="#2-2-美食参考指南" class="headerlink" title="2.2 美食参考指南"></a>2.2 美食参考指南</h3><p>Open Rice 香港本地美食指南网站（有官方app噢！）</p>
+<h3 id="2-3-黑榜"><a href="#2-3-黑榜" class="headerlink" title="2.3  黑榜"></a>2.3  黑榜</h3><table>
+<thead>
+<tr>
+<th>店名</th>
+<th>上榜原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一乐烧鹅</td>
+<td>殴打食客、歧视普通话游客、服务态度差</td>
+</tr>
+<tr>
+<td>华嫂冰室</td>
+<td>难吃</td>
+</tr>
+<tr>
+<td>吃茶三千</td>
+<td>不如内地奶茶</td>
+</tr>
+<tr>
+<td>九记牛腩</td>
+<td>态度差、排队久、味道一般</td>
+</tr>
+<tr>
+<td>澳洲牛奶公司</td>
+<td>出名的态度差</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-有趣知识"><a href="#2-3-有趣知识" class="headerlink" title="2.3 有趣知识"></a>2.3 有趣知识</h3><p>由于禽流感，2004年以来香港政府禁止活鸭鹅入口，因此香港烧鹅很多是冷冻产品，味道反而不如。</p>
+<h2 id="3-旅游路线"><a href="#3-旅游路线" class="headerlink" title="3.旅游路线"></a>3.旅游路线</h2><p>香港行政区 地图如下<br><a href="https://imgse.com/i/pisbg00"><img src="https://z1.ax1x.com/2023/12/02/pisbg00.png" alt="pisbg00.png"></a></p>
+<h3 id="3-1-初次来香港"><a href="#3-1-初次来香港" class="headerlink" title="3.1 初次来香港"></a>3.1 初次来香港</h3><p>我先是在旺角东下站，去了金鱼街看了一下。金鱼街和露天市场还是宠物店是挨在一起的，要走过天桥到达。天桥上到处都是外佣（菲律宾佣人、穆斯林信仰的佣人），她们三三两两坐在一起，一开始下来的时候，旁边是阿拉伯学校，我还以为她们都是阿拉伯人……</p>
+<p>体感最好的是尖沙咀靠海那一段，中间是香港艺术馆、香港天文馆、有channel巨大雕塑缠绕的酒店，往右走是kkmall设计中的最高档的kk musem，在海滨上是3层楼那么高的迪奥圣诞树。向外走就是星光大道。往左走就是1881公馆和天星码头。</p>
+<p>艺术馆的二楼向下看去，海水波光粼粼，可想而知如若是个阳天会是如何闪烁。</p>
+<p>而星光大道确实是愉快的一段散步，在星巴克前面是梅艳芳和李小龙的雕像，在外围的围栏上面是名人的手印和签名。身后是kk musem，那些半死不活的绿植从窗外爬出。</p>
+<p>1881公馆里有5对couple在拍结婚照，真的气氛很适合婚庆。</p>
+<p>天星码头的中心可以领取100hkd的夜游券，天星码头对面就是香港岛，下了码头，旁边是海军博物馆，aia摩天轮和音乐节还是american express包场的一个活动。摩天轮需要排队80分钟，把我搞无语了都。旁边的旋转木马要30hkd。没有任何强烈的挣扎，我直接放弃了这项娱乐活动。</p>
+<p>但是没控制好时间，到达香港岛的时候已经天色暗了下来，不太敢深入去看一些景点。<br>就走了天桥，这个天桥很有特点，就好像天桥上的城市一样，可以沿着天桥去往四面八方。尤其是搭乘自动扶梯的时候，看着那些建筑里的一格格窗经过我。在尽头就是大馆，以前是香港的监狱。但是现在一片祥和。</p>
+<p>在地铁站靠近服务中心会有优惠机器，拿着八达通在上面拍一拍就可以领取优惠。可以用于返程。暴走3w步，就这样结束了。</p>
+<h2 id="官方支持性app"><a href="#官方支持性app" class="headerlink" title="官方支持性app"></a>官方支持性app</h2><p>由香港政府官方支持的app集合，请参照以下链接，酌情下载：<a href="https://data.gov.hk/tc/application/hketa">https://data.gov.hk/tc/application/hketa</a></p>
+<p>这个网站可以花点时间阅读一下，而不只限于app部分</p>
+<p>我将部分可能出现的问题，和支持性app结合起来介绍</p>
+<p>ps：安卓用户请灵活运用apk android等关键词搜索第三方渠道下载</p>
+<h3 id="坐到哪了？还要等多久？"><a href="#坐到哪了？还要等多久？" class="headerlink" title="坐到哪了？还要等多久？"></a>坐到哪了？还要等多久？</h3><p>需要查询地铁、公交、轻轨到站时间，下载一个</p>
+<p><a href="https://imgse.com/i/pisOdk6"><img src="https://z1.ax1x.com/2023/12/02/pisOdk6.jpg" alt="pisOdk6.jpg"></a></p>
+<h3 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h3><p>不知道自己现在在哪，想要了解目的地该怎么过去？<br>请下载citymapper！有点像广告词了</p>
+<p>还是请大家使用google map吧！这个citymapper也一般</p>
+<h3 id="厕所问题"><a href="#厕所问题" class="headerlink" title="厕所问题"></a>厕所问题</h3><p>人有三急，而香港上厕所并没有那么方便</p>
+<p>为了厕所自由，可以考虑下载以下app<br><a href="https://imgse.com/i/pisOtmR"><img src="https://z1.ax1x.com/2023/12/02/pisOtmR.jpg" alt="pisOtmR.jpg"></a></p>
+<p>体感：去商场上就好了</p>
+]]></content>
       <categories>
-          
-          <category> 旅行 </category>
-          
+        <category>旅行</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 旅游 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Excel公式整理</title>
-      <link href="/2023/11/29/excel-gong-shi-zheng-li-ji/"/>
-      <url>/2023/11/29/excel-gong-shi-zheng-li-ji/</url>
-      
-        <content type="html"><![CDATA[<h1 id="文具"><a href="#文具" class="headerlink" title="文具"></a>文具</h1><h2 id="XLOOKUP"><a href="#XLOOKUP" class="headerlink" title="XLOOKUP"></a>XLOOKUP</h2><p>推荐阅读：<a href="https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929</a></p><h3 id="基本运算公式"><a href="#基本运算公式" class="headerlink" title="基本运算公式"></a>基本运算公式</h3><p>=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode]) </p><table><thead><tr><th>参数</th><th>说明</th></tr></thead><tbody><tr><td><code>lookup_value</code></td><td><strong>必填</strong>*，要搜索的值。如果省略，XLOOKUP将返回在<code>lookup_array</code>中找到的空白单元格。</td></tr><tr><td><code>lookup_array</code></td><td><strong>必需</strong>，要搜索的数组或区域。</td></tr><tr><td><code>return_array</code></td><td><strong>必需</strong>，要返回的数组或区域。</td></tr><tr><td><code>[if_not_found]</code></td><td><strong>可选</strong>，如果未找到有效的匹配项，则返回你提供的<code>[if_not_found]</code>文本。如果未找到有效的匹配项，且缺少<code>[if_not_found]</code>，则返回 #N/A。</td></tr><tr><td><code>[match_mode]</code></td><td><strong>可选</strong>，指定匹配类型：</td></tr><tr><td></td><td>- 0: 完全匹配。如果未找到，则返回 #N/A。这是默认选项。</td></tr><tr><td></td><td>- -1: 完全匹配。如果没有找到，则返回下一个较小的项。</td></tr><tr><td></td><td>- 1: 完全匹配。如果没有找到，则返回下一个较大的项。</td></tr><tr><td></td><td>- 2: 通配符匹配，其中 <code>*</code>, <code>?</code> 和 <code>~</code> 有特殊含义。</td></tr><tr><td><code>[search_mode]</code></td><td><strong>可选</strong>，指定要使用的搜索模式：</td></tr><tr><td></td><td>- 1: 从第一项开始执行搜索。这是默认选项。</td></tr><tr><td></td><td>- -1: 从最后一项开始执行反向搜索。</td></tr><tr><td></td><td>- 2: 执行依赖于<code>lookup_array</code>按升序排序的二进制搜索。如果未排序，将返回无效结果。</td></tr><tr><td></td><td>- -2: 执行依赖于<code>lookup_array</code>按降序排序的二进制搜索。如果未排序，将返回无效结果。</td></tr></tbody></table><p>补充说明：二分/二进制查询需在有序数据中进行查询（升序、降序排列的数据中使用，它的查找效率优于非二进制查询）</p><h3 id="为什么推荐XLOOKUP？"><a href="#为什么推荐XLOOKUP？" class="headerlink" title="为什么推荐XLOOKUP？"></a>为什么推荐XLOOKUP？</h3><p>它在与VLOOKUP的对比中有如下三个优点：</p><p>&nbsp;&nbsp;&nbsp;&nbsp;1.XLOOKUP可以解决VLOOKUP无法向左查找的难题（VLOOKUP通常搭配HLOOKUP解决这一问题）</p><p>&nbsp;&nbsp;&nbsp;&nbsp;2.XLOOKUP可以解决返回“N/A”的问题（使用VLOOKUP时，可搭配IFERROR使报错金额为0）</p><p>&nbsp;&nbsp;&nbsp;&nbsp;3.XLOOKUP支持多条件查询（VLOOKUP需要多条件匹配时，可以用“&amp;”将多个条件合并到辅助列再VLOOKUP）</p><p>用途：暂时没总结</p><hr><h2 id="SUBTOTAL"><a href="#SUBTOTAL" class="headerlink" title="SUBTOTAL"></a>SUBTOTAL</h2><p>推荐阅读 <a href="https://support.microsoft.com/en-us/office/subtotal-function-7b027003-f060-4ade-9040-e478765b9939">https://support.microsoft.com/en-us/office/subtotal-function-7b027003-f060-4ade-9040-e478765b9939</a></p><p>Funtion_num:1-11数字功能包含隐藏值执行；101到111忽略隐藏值执行</p><p>该函数可以替代多项函数的功能</p><h3 id="subtotals数字功能查询表"><a href="#subtotals数字功能查询表" class="headerlink" title="subtotals数字功能查询表"></a>subtotals数字功能查询表</h3><table><thead><tr><th>Function_num (includes hidden rows)</th><th>Function_num (ignores hidden rows)</th><th>Function</th></tr></thead><tbody><tr><td>1</td><td>101</td><td>AVERAGE</td></tr><tr><td>2</td><td>102</td><td>COUNT</td></tr><tr><td>3</td><td>103</td><td>COUNTA</td></tr><tr><td>4</td><td>104</td><td>MAX</td></tr><tr><td>5</td><td>105</td><td>MIN</td></tr><tr><td>6</td><td>106</td><td>PRODUCT</td></tr><tr><td>7</td><td>107</td><td>STDEV</td></tr><tr><td>8</td><td>108</td><td>STDEVP</td></tr><tr><td>9</td><td>109</td><td>SUM</td></tr><tr><td>10</td><td>110</td><td>VAR</td></tr><tr><td>11</td><td>111</td><td>VARP</td></tr></tbody></table><hr><h2 id="SUMIF-SUMIFS"><a href="#SUMIF-SUMIFS" class="headerlink" title="SUMIF&amp;SUMIFS"></a>SUMIF&amp;SUMIFS</h2><h3 id="sum语法的差异"><a href="#sum语法的差异" class="headerlink" title="sum语法的差异"></a>sum语法的差异</h3><p>sumif适用于单条件查询，sumifs使用于多条件查询</p><p>SUMIF(range, criteria, [sum_range])</p><p>sumif应该没什么好讲的了（笑) 就来说说sumifs</p><p>sumifs的语法：SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], …)</p><table><thead><tr><th>参数名</th><th>说明</th></tr></thead><tbody><tr><td><code>Sum_range</code></td><td><strong>必需</strong>，要求和的单元格区域。</td></tr><tr><td><code>Criteria_range1</code></td><td><strong>必需</strong>，使用<code>Criteria1</code>测试的区域。<code>Criteria_range1</code>和<code>Criteria1</code>设置用于搜索某个区域是否符合特定条件的搜索对。一旦在该区域中找到了项，将计算<code>Sum_range</code>中的相应值的和。</td></tr><tr><td><code>Criteria1</code></td><td><strong>必需</strong>，定义将计算<code>Criteria_range1</code>中的哪些单元格的和的条件。例如，可以将条件输入为32、”&gt;32”、B4、”苹果”或”32”。</td></tr><tr><td><code>Criteria_range2</code>, <code>criteria2</code>, …</td><td><strong>可选</strong>，附加的区域及其关联条件。最多可以输入127个区域/条件对。</td></tr></tbody></table><h3 id="sumifs常见问题查询表"><a href="#sumifs常见问题查询表" class="headerlink" title="sumifs常见问题查询表"></a>sumifs常见问题查询表</h3><table><thead><tr><th>问题</th><th>说明</th></tr></thead><tbody><tr><td>显示 0（零）而不是预期结果。</td><td>如果要测试文本值，如姓名，请确保将 <code>Criteria1</code>, <code>Criteria2</code> 用引号引起来。</td></tr><tr><td>Sum_range 有值 TRUE 或 FALSE 时，结果不正确。</td><td><code>Sum_range</code> 的值 TRUE 和 FALSE 的求值方式不同，可能会在将其相加时导致意外结果。</td></tr><tr><td></td><td><code>Sum_range</code> 中包含 TRUE 的单元格的求值结果为 1。包含 FALSE 的单元格的求值结果为 0（零）。</td></tr></tbody></table><h3 id="通配符的补充说明"><a href="#通配符的补充说明" class="headerlink" title="通配符的补充说明"></a>通配符的补充说明</h3><table><thead><tr><th>用途</th><th>示例</th></tr></thead><tbody><tr><td>若要查找</td><td></td></tr><tr><td>? （问号）</td><td>任何单个字符，例如，<code>sm?th</code> 可找到”smith”和”smyth”</td></tr><tr><td>*（星号）</td><td>任意数目的字符，例如，<code>*east</code> 可找到”northwest”和”southwest”</td></tr><tr><td>~（波形符）后跟 ?、* 或 ~</td><td>问号、星号或波浪线，例如，<code>fy06~?</code> 可找到”fy06？”</td></tr></tbody></table><h2 id="COUNTIF-COUNTIFS"><a href="#COUNTIF-COUNTIFS" class="headerlink" title="COUNTIF&amp;COUNTIFS"></a>COUNTIF&amp;COUNTIFS</h2><p>COUNTIF 是一个统计函数，用于统计满足某个条件的单元格的数量</p><p><strong>通配符可解决查询复杂形式的数据</strong></p><h3 id="COUNT一些特殊情况"><a href="#COUNT一些特殊情况" class="headerlink" title="COUNT一些特殊情况"></a>COUNT一些特殊情况</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;1.查找非文本出现次数</p><p>&nbsp;&nbsp;&nbsp;&nbsp;=countif（筛选区域,”&lt;&gt;文本”)</p><p>&nbsp;&nbsp;&nbsp;&nbsp;1.1 name range的使用</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name ranger可以简化筛选区域的公式</p><p>&nbsp;&nbsp;&nbsp;&nbsp;2.查找L为首字母</p><p>&nbsp;&nbsp;&nbsp;&nbsp;=countif(name range,”L*”)</p><p>&nbsp;&nbsp;&nbsp;&nbsp;2.1 取消通配符作用</p><p>&nbsp;&nbsp;&nbsp;&nbsp;如<del>可取消通配符作用，如countif(name range,”L*</del>“)</p><p>&nbsp;&nbsp;&nbsp;&nbsp;3.查找x位数字</p><p>&nbsp;&nbsp;&nbsp;&nbsp;=countif(name range,”?????”)，此处为查询五位数，x为几，？就有几个</p><h2 id="FILTER函数"><a href="#FILTER函数" class="headerlink" title="FILTER函数"></a>FILTER函数</h2><p>返回数据组的函数，相较于vlookup来说</p><p>当然它可以修改筛选区域，从而实现和VLOOKUP一样的作用</p><p>当然它也可以和if函数结合，从而实现不相邻列的数据返回</p><p>当然，如果只是为了filter实现以上两个功能，我的评价是：<strong>为什么不用xlookup</strong></p><p>它一定还有更好用的作用，目前我不知道！</p><h2 id="暂时更新到这！"><a href="#暂时更新到这！" class="headerlink" title="暂时更新到这！"></a>暂时更新到这！</h2>]]></content>
-      
-      
+      <tags>
+        <tag>旅游</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Excel公式整理</title>
+    <url>/2023/11/29/excel-gong-shi-zheng-li-ji/</url>
+    <content><![CDATA[<h1 id="文具"><a href="#文具" class="headerlink" title="文具"></a>文具</h1><h2 id="XLOOKUP"><a href="#XLOOKUP" class="headerlink" title="XLOOKUP"></a>XLOOKUP</h2><p>推荐阅读：<a href="https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929">https://support.microsoft.com/en-au/office/xlookup-function-b7fd680e-6d10-43e6-84f9-88eae8bf5929</a></p>
+<h3 id="基本运算公式"><a href="#基本运算公式" class="headerlink" title="基本运算公式"></a>基本运算公式</h3><p>=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode]) </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>lookup_value</code></td>
+<td><strong>必填</strong>*，要搜索的值。如果省略，XLOOKUP将返回在<code>lookup_array</code>中找到的空白单元格。</td>
+</tr>
+<tr>
+<td><code>lookup_array</code></td>
+<td><strong>必需</strong>，要搜索的数组或区域。</td>
+</tr>
+<tr>
+<td><code>return_array</code></td>
+<td><strong>必需</strong>，要返回的数组或区域。</td>
+</tr>
+<tr>
+<td><code>[if_not_found]</code></td>
+<td><strong>可选</strong>，如果未找到有效的匹配项，则返回你提供的<code>[if_not_found]</code>文本。如果未找到有效的匹配项，且缺少<code>[if_not_found]</code>，则返回 #N/A。</td>
+</tr>
+<tr>
+<td><code>[match_mode]</code></td>
+<td><strong>可选</strong>，指定匹配类型：</td>
+</tr>
+<tr>
+<td></td>
+<td>- 0: 完全匹配。如果未找到，则返回 #N/A。这是默认选项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- -1: 完全匹配。如果没有找到，则返回下一个较小的项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- 1: 完全匹配。如果没有找到，则返回下一个较大的项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- 2: 通配符匹配，其中 <code>*</code>, <code>?</code> 和 <code>~</code> 有特殊含义。</td>
+</tr>
+<tr>
+<td><code>[search_mode]</code></td>
+<td><strong>可选</strong>，指定要使用的搜索模式：</td>
+</tr>
+<tr>
+<td></td>
+<td>- 1: 从第一项开始执行搜索。这是默认选项。</td>
+</tr>
+<tr>
+<td></td>
+<td>- -1: 从最后一项开始执行反向搜索。</td>
+</tr>
+<tr>
+<td></td>
+<td>- 2: 执行依赖于<code>lookup_array</code>按升序排序的二进制搜索。如果未排序，将返回无效结果。</td>
+</tr>
+<tr>
+<td></td>
+<td>- -2: 执行依赖于<code>lookup_array</code>按降序排序的二进制搜索。如果未排序，将返回无效结果。</td>
+</tr>
+</tbody></table>
+<p>补充说明：二分/二进制查询需在有序数据中进行查询（升序、降序排列的数据中使用，它的查找效率优于非二进制查询）</p>
+<h3 id="为什么推荐XLOOKUP？"><a href="#为什么推荐XLOOKUP？" class="headerlink" title="为什么推荐XLOOKUP？"></a>为什么推荐XLOOKUP？</h3><p>它在与VLOOKUP的对比中有如下三个优点：</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1.XLOOKUP可以解决VLOOKUP无法向左查找的难题（VLOOKUP通常搭配HLOOKUP解决这一问题）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2.XLOOKUP可以解决返回“N/A”的问题（使用VLOOKUP时，可搭配IFERROR使报错金额为0）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3.XLOOKUP支持多条件查询（VLOOKUP需要多条件匹配时，可以用“&amp;”将多个条件合并到辅助列再VLOOKUP）</p>
+<p>用途：暂时没总结</p>
+<hr>
+<h2 id="SUBTOTAL"><a href="#SUBTOTAL" class="headerlink" title="SUBTOTAL"></a>SUBTOTAL</h2><p>推荐阅读 <a href="https://support.microsoft.com/en-us/office/subtotal-function-7b027003-f060-4ade-9040-e478765b9939">https://support.microsoft.com/en-us/office/subtotal-function-7b027003-f060-4ade-9040-e478765b9939</a></p>
+<p>Funtion_num:1-11数字功能包含隐藏值执行；101到111忽略隐藏值执行</p>
+<p>该函数可以替代多项函数的功能</p>
+<h3 id="subtotals数字功能查询表"><a href="#subtotals数字功能查询表" class="headerlink" title="subtotals数字功能查询表"></a>subtotals数字功能查询表</h3><table>
+<thead>
+<tr>
+<th>Function_num (includes hidden rows)</th>
+<th>Function_num (ignores hidden rows)</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>101</td>
+<td>AVERAGE</td>
+</tr>
+<tr>
+<td>2</td>
+<td>102</td>
+<td>COUNT</td>
+</tr>
+<tr>
+<td>3</td>
+<td>103</td>
+<td>COUNTA</td>
+</tr>
+<tr>
+<td>4</td>
+<td>104</td>
+<td>MAX</td>
+</tr>
+<tr>
+<td>5</td>
+<td>105</td>
+<td>MIN</td>
+</tr>
+<tr>
+<td>6</td>
+<td>106</td>
+<td>PRODUCT</td>
+</tr>
+<tr>
+<td>7</td>
+<td>107</td>
+<td>STDEV</td>
+</tr>
+<tr>
+<td>8</td>
+<td>108</td>
+<td>STDEVP</td>
+</tr>
+<tr>
+<td>9</td>
+<td>109</td>
+<td>SUM</td>
+</tr>
+<tr>
+<td>10</td>
+<td>110</td>
+<td>VAR</td>
+</tr>
+<tr>
+<td>11</td>
+<td>111</td>
+<td>VARP</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="SUMIF-SUMIFS"><a href="#SUMIF-SUMIFS" class="headerlink" title="SUMIF&amp;SUMIFS"></a>SUMIF&amp;SUMIFS</h2><h3 id="sum语法的差异"><a href="#sum语法的差异" class="headerlink" title="sum语法的差异"></a>sum语法的差异</h3><p>sumif适用于单条件查询，sumifs使用于多条件查询</p>
+<p>SUMIF(range, criteria, [sum_range])</p>
+<p>sumif应该没什么好讲的了（笑) 就来说说sumifs</p>
+<p>sumifs的语法：SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], …)</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Sum_range</code></td>
+<td><strong>必需</strong>，要求和的单元格区域。</td>
+</tr>
+<tr>
+<td><code>Criteria_range1</code></td>
+<td><strong>必需</strong>，使用<code>Criteria1</code>测试的区域。<code>Criteria_range1</code>和<code>Criteria1</code>设置用于搜索某个区域是否符合特定条件的搜索对。一旦在该区域中找到了项，将计算<code>Sum_range</code>中的相应值的和。</td>
+</tr>
+<tr>
+<td><code>Criteria1</code></td>
+<td><strong>必需</strong>，定义将计算<code>Criteria_range1</code>中的哪些单元格的和的条件。例如，可以将条件输入为32、”&gt;32”、B4、”苹果”或”32”。</td>
+</tr>
+<tr>
+<td><code>Criteria_range2</code>, <code>criteria2</code>, …</td>
+<td><strong>可选</strong>，附加的区域及其关联条件。最多可以输入127个区域/条件对。</td>
+</tr>
+</tbody></table>
+<h3 id="sumifs常见问题查询表"><a href="#sumifs常见问题查询表" class="headerlink" title="sumifs常见问题查询表"></a>sumifs常见问题查询表</h3><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>显示 0（零）而不是预期结果。</td>
+<td>如果要测试文本值，如姓名，请确保将 <code>Criteria1</code>, <code>Criteria2</code> 用引号引起来。</td>
+</tr>
+<tr>
+<td>Sum_range 有值 TRUE 或 FALSE 时，结果不正确。</td>
+<td><code>Sum_range</code> 的值 TRUE 和 FALSE 的求值方式不同，可能会在将其相加时导致意外结果。</td>
+</tr>
+<tr>
+<td></td>
+<td><code>Sum_range</code> 中包含 TRUE 的单元格的求值结果为 1。包含 FALSE 的单元格的求值结果为 0（零）。</td>
+</tr>
+</tbody></table>
+<h3 id="通配符的补充说明"><a href="#通配符的补充说明" class="headerlink" title="通配符的补充说明"></a>通配符的补充说明</h3><table>
+<thead>
+<tr>
+<th>用途</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>若要查找</td>
+<td></td>
+</tr>
+<tr>
+<td>? （问号）</td>
+<td>任何单个字符，例如，<code>sm?th</code> 可找到”smith”和”smyth”</td>
+</tr>
+<tr>
+<td>*（星号）</td>
+<td>任意数目的字符，例如，<code>*east</code> 可找到”northwest”和”southwest”</td>
+</tr>
+<tr>
+<td>~（波形符）后跟 ?、* 或 ~</td>
+<td>问号、星号或波浪线，例如，<code>fy06~?</code> 可找到”fy06？”</td>
+</tr>
+</tbody></table>
+<h2 id="COUNTIF-COUNTIFS"><a href="#COUNTIF-COUNTIFS" class="headerlink" title="COUNTIF&amp;COUNTIFS"></a>COUNTIF&amp;COUNTIFS</h2><p>COUNTIF 是一个统计函数，用于统计满足某个条件的单元格的数量</p>
+<p><strong>通配符可解决查询复杂形式的数据</strong></p>
+<h3 id="COUNT一些特殊情况"><a href="#COUNT一些特殊情况" class="headerlink" title="COUNT一些特殊情况"></a>COUNT一些特殊情况</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;1.查找非文本出现次数</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;=countif（筛选区域,”&lt;&gt;文本”)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;1.1 name range的使用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name ranger可以简化筛选区域的公式</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2.查找L为首字母</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;=countif(name range,”L*”)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;2.1 取消通配符作用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;如<del>可取消通配符作用，如countif(name range,”L*</del>“)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;3.查找x位数字</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;=countif(name range,”?????”)，此处为查询五位数，x为几，？就有几个</p>
+<h2 id="FILTER函数"><a href="#FILTER函数" class="headerlink" title="FILTER函数"></a>FILTER函数</h2><p>返回数据组的函数，相较于vlookup来说</p>
+<p>当然它可以修改筛选区域，从而实现和VLOOKUP一样的作用</p>
+<p>当然它也可以和if函数结合，从而实现不相邻列的数据返回</p>
+<p>当然，如果只是为了filter实现以上两个功能，我的评价是：<strong>为什么不用xlookup</strong></p>
+<p>它一定还有更好用的作用，目前我不知道！</p>
+<h2 id="暂时更新到这！"><a href="#暂时更新到这！" class="headerlink" title="暂时更新到这！"></a>暂时更新到这！</h2>]]></content>
       <categories>
-          
-          <category> Excel </category>
-          
+        <category>Excel</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Excel </tag>
-            
-            <tag> Tools </tag>
-            
-            <tag> tool </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>关于datasnipper的介绍</title>
-      <link href="/2023/11/29/guan-yu-data-snipper-de-yong-tu-jie-shao/"/>
-      <url>/2023/11/29/guan-yu-data-snipper-de-yong-tu-jie-shao/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Data-snipper"><a href="#Data-snipper" class="headerlink" title="Data snipper"></a>Data snipper</h2><p><a href="https://imgse.com/i/pirZsO0"><img src="https://z1.ax1x.com/2023/11/30/pirZsO0.png" alt="pirZsO0.png"></a></p><p>是excel里面一款强大的功能插件。我将会从一些使用频率较高的功能开始介绍起。以下简称Ds，Ds内置OCR技术，可以识别照片、pdf等格式里的文字及数据。</p><h3 id="1-Form-Extraction-格式提取"><a href="#1-Form-Extraction-格式提取" class="headerlink" title="1.Form Extraction/格式提取"></a>1.Form Extraction/格式提取</h3><p>可以批量提取相同格式下的文字（eg：发票、银行对账单）</p><p>具体情景：当你面对上百张相同格式的发票，需要提取公司抬头、金额、地址</p><p>可通过选取区域，设定Template（提取信息的固定格式）</p><p>那么Form Extraction就可以按照这个Template对发票们进行批量信息提取，之后如果有新的发票需要获取信息，只需要继续沿用这个Template即可 </p><p>是不是很棒呢！ This is a smiling face: <span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p><h3 id="2-Document-Matching-文件匹配"><a href="#2-Document-Matching-文件匹配" class="headerlink" title="2.Document Matching/文件匹配"></a>2.Document Matching/文件匹配</h3><p>用途：test of details（抽凭核对）</p><p>具体情景：你需要核对发票上的金额、名目与电子excle导出的样本是否一致</p><h3 id="3-Finacial-Statement-Suite"><a href="#3-Finacial-Statement-Suite" class="headerlink" title="3.Finacial Statement Suite"></a>3.Finacial Statement Suite</h3><p>识别财报中的数字关系(是的，和all sum功能重复）</p><p>识别财报中的数字公式正确程度</p>]]></content>
-      
-      
+      <tags>
+        <tag>Tools</tag>
+        <tag>tool</tag>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于datasnipper的介绍</title>
+    <url>/2023/11/29/guan-yu-data-snipper-de-yong-tu-jie-shao/</url>
+    <content><![CDATA[<h2 id="Data-snipper"><a href="#Data-snipper" class="headerlink" title="Data snipper"></a>Data snipper</h2><p><a href="https://imgse.com/i/pirZsO0"><img src="https://z1.ax1x.com/2023/11/30/pirZsO0.png" alt="pirZsO0.png"></a></p>
+<p>是excel里面一款强大的功能插件。我将会从一些使用频率较高的功能开始介绍起。以下简称Ds，Ds内置OCR技术，可以识别照片、pdf等格式里的文字及数据。</p>
+<h3 id="1-Form-Extraction-格式提取"><a href="#1-Form-Extraction-格式提取" class="headerlink" title="1.Form Extraction/格式提取"></a>1.Form Extraction/格式提取</h3><p>可以批量提取相同格式下的文字（eg：发票、银行对账单）</p>
+<p>具体情景：当你面对上百张相同格式的发票，需要提取公司抬头、金额、地址</p>
+<p>可通过选取区域，设定Template（提取信息的固定格式）</p>
+<p>那么Form Extraction就可以按照这个Template对发票们进行批量信息提取，之后如果有新的发票需要获取信息，只需要继续沿用这个Template即可 </p>
+<p>是不是很棒呢！ This is a smiling face: <span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<h3 id="2-Document-Matching-文件匹配"><a href="#2-Document-Matching-文件匹配" class="headerlink" title="2.Document Matching/文件匹配"></a>2.Document Matching/文件匹配</h3><p>用途：test of details（抽凭核对）</p>
+<p>具体情景：你需要核对发票上的金额、名目与电子excle导出的样本是否一致</p>
+<h3 id="3-Finacial-Statement-Suite"><a href="#3-Finacial-Statement-Suite" class="headerlink" title="3.Finacial Statement Suite"></a>3.Finacial Statement Suite</h3><p>识别财报中的数字关系(是的，和all sum功能重复）</p>
+<p>识别财报中的数字公式正确程度</p>
+]]></content>
       <categories>
-          
-          <category> 插件 </category>
-          
+        <category>插件</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Tools </tag>
-            
-            <tag> tool </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>访问必知</title>
-      <link href="/2023/11/25/fang-wen-bi-zhi/"/>
-      <url>/2023/11/25/fang-wen-bi-zhi/</url>
-      
-        <content type="html"><![CDATA[<p>你好，我是网站的创建者 Lucas Lee，欢迎你来到我的私人博客。在这里，你可以查看一些我和我的伙伴们共享的一些学习资源和实践经验。</p><p>如果有任何问题，欢迎你致信我的私人邮箱：<a href="mailto:masklee1999@163.com">masklee1999@163.com</a>。</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>Tools</tag>
+        <tag>tool</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>访问必知</title>
+    <url>/2023/11/25/fang-wen-bi-zhi/</url>
+    <content><![CDATA[<p>你好，我是网站的创建者 Lucas Lee，欢迎你来到我的私人博客。在这里，你可以查看一些我和我的伙伴们共享的一些学习资源和实践经验。</p>
+<p>如果有任何问题，欢迎你致信我的私人邮箱：<a href="mailto:masklee1999@163.com">masklee1999@163.com</a>。</p>
+]]></content>
+  </entry>
 </search>
